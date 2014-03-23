@@ -1,0 +1,99 @@
+﻿<Plugin
+  DescriptorVersion="1.0"
+  Name="AppLauncher"
+  PluginId="{C2939FD8-9399-4577-934E-C7471D30C306}"
+  Author="BigGranu"
+  Copyright="GPL"
+  PluginVersion="1.0"
+  Description="Start a extern App">
+
+  <Runtime>
+    <Assembly FileName="AppLauncher.dll"/>
+  </Runtime>
+
+  <DependsOn>
+    <!-- ConfigurationManager -->
+    <PluginReference PluginId="{1AFF4467-64B0-4ca1-AF28-9AEDF3525BCE}" />
+    <!-- Configuration plugin -->
+    <PluginReference PluginId="{B765A4B6-F455-4941-BDAE-2CE45208BFEB}" />    
+  </DependsOn>
+
+  <Register Location="/Models">
+    <Model Id="624339C2-0D3B-437B-8046-6F540D704A93" ClassName="AppLauncher.Models.AppLauncherHome"/>
+    <Model Id="873EB147-C998-4632-8F86-D5E24062BE2E" ClassName="AppLauncher.Models.AppLauncherSettingsEdit"/>
+    <Model Id="D47E22A3-3D0F-4A28-8EF6-1121B811508C" ClassName="AppLauncher.Models.AppLauncherSettingsAdd"/>
+    <Model Id="3C19B13A-D64C-4918-9AD6-17EC2D9AAE29" ClassName="AppLauncher.Models.AppLauncherSettingsDelete"/>
+    <Model Id="ABA8802E-3E55-49DC-A446-E128D5B4A1D1" ClassName="AppLauncher.Dialoges.DlgAppLauncherAllApps"/>
+  </Register>
+
+  <Register Location="/Workflow/States">
+    <WorkflowState Id="EE23FB37-043C-46DE-9DAC-7F023135C0B2"
+      Name="Home" 
+      MainScreen="AppLauncherHome"
+      DisplayLabel="[AppLauncher.Title]"
+      WorkflowModel="624339C2-0D3B-437B-8046-6F540D704A93"/>
+
+    <WorkflowState Id="EE5988B6-1FB7-4F62-9A92-4AFAF34E460C"
+      Name="SettingsEdit" 
+      MainScreen="AppLauncherSettingsEdit"
+      DisplayLabel="[AppLauncher.Settings.Edit]"
+      WorkflowModel="873EB147-C998-4632-8F86-D5E24062BE2E"/>
+
+    <WorkflowState Id="63B0EBCE-8B52-4DE6-9B8F-D902507CC53D"
+      Name="SettingsAdd"
+      MainScreen="AppLauncherSettingsAdd"
+      DisplayLabel="[AppLauncher.Settings.Add]"
+      WorkflowModel="D47E22A3-3D0F-4A28-8EF6-1121B811508C"/>
+
+    <WorkflowState Id="684211ED-48C9-4BD7-B9D8-4F7B10D63678"
+      Name="SettingsDelete"
+      MainScreen="AppLauncherSettingsDelete"
+      DisplayLabel="[AppLauncher.Settings.Delete]"
+      WorkflowModel="3C19B13A-D64C-4918-9AD6-17EC2D9AAE29"/>   
+    
+    <DialogState Id="5FB79A89-3CA6-4DD0-A867-7B934470CFC2"
+      Name="SelectSettingsApp"
+      DialogScreen="DlgAppLauncherAllApps"
+      DisplayLabel="[AppLauncher.Settings.AllApps]"
+      WorkflowModel="ABA8802E-3E55-49DC-A446-E128D5B4A1D1"/>
+  </Register>
+
+  <Register Location="/Resources/Skin">
+    <Resource Id="AppLauncherSkin" Directory="Skin" Type="Skin"/>
+  </Register>
+
+  <Register Location="/Resources/Language">
+    <Resource Id="AppLauncherLanguge" Directory="Language" Type="Language"/>
+  </Register>
+
+  <!--Content of Settings/Plugins section-->
+  <Register Location="/Configuration/Settings/Plugins">
+    <ConfigSection
+        Id="AppLauncher"
+        Redundant="true"
+        Text="AppLauncher"/>
+  </Register>
+
+  <!--Content of Settings/Plugins/AppLauncher section-->
+  <Register Location="/Configuration/Settings/Plugins/AppLauncher">   
+    <CustomConfigSetting
+      Id="AppLauncherSettingsAdd"
+      Text="[AppLauncher.Settings.Add]"
+      HelpText="[AppLauncher.Settings.Add.Helptext]"
+      ClassName="AppLauncher.Settings.Configuration.Add"
+      AdditionalData="WorkflowState=63B0EBCE-8B52-4DE6-9B8F-D902507CC53D,ConfAppPanel=..."/>
+    <CustomConfigSetting
+      Id="AppLauncherSettingsEdit"
+      Text="[AppLauncher.Settings.Edit]"
+      HelpText="[AppLauncher.Settings.Edit.Helptext]"
+      ClassName="AppLauncher.Settings.Configuration.Edit"
+			AdditionalData="WorkflowState=EE5988B6-1FB7-4F62-9A92-4AFAF34E460C,ConfAppPanel=..."/>
+    <CustomConfigSetting
+      Id="AppLauncherSettingsDelete"
+      Text="[AppLauncher.Settings.Delete]"
+      HelpText="[AppLauncher.Settings.Delete.Helptext]"
+      ClassName="AppLauncher.Settings.Configuration.Delete"
+			AdditionalData="WorkflowState=684211ED-48C9-4BD7-B9D8-4F7B10D63678,ConfAppPanel=..."/>
+  </Register>
+  
+</Plugin>
