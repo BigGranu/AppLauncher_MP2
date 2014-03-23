@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="AppLauncher.Title">App Launcher</string>
+	<string name="AppLauncher.Settings.Title">Settings</string>	
+	<string name="AppLauncher.Settings.Helptext">Select your extern Apps</string>
+	<string name="AppLauncher.Settings.Add">Added</string>
+  <string name="AppLauncher.Settings.Add.Shortname">Shortname</string>
+  <string name="AppLauncher.Settings.Add.Arguments">Arguments</string>
+  <string name="AppLauncher.Settings.Add.Path">Applicationpath</string>
+  <string name="AppLauncher.Settings.Add.Description">Description</string>
+  <string name="AppLauncher.Settings.Add.Username">Username</string>
+  <string name="AppLauncher.Settings.Add.Password">Password</string>
+  <string name="AppLauncher.Settings.Add.Icon">Iconpath</string>
+  <string name="AppLauncher.Settings.Add.Screenmode">Screenmode</string>
+  <string name="AppLauncher.Settings.Add.Search">Search</string>
+  <string name="AppLauncher.Settings.Add.Select">Select</string>
+  <string name="AppLauncher.Settings.Add.Minimum">Minimum</string>
+  <string name="AppLauncher.Settings.Add.Normal">Normal</string>
+  <string name="AppLauncher.Settings.Add.Maximum">Maximum</string>
+  <string name="AppLauncher.Settings.Add.NoWindow">No Window</string>
+  <string name="AppLauncher.Settings.Add.SearchIcon">Search Icon</string>
+  <string name="AppLauncher.Settings.Add.SearchApp">Search Application</string>
+  <string name="AppLauncher.Settings.Add.AsAdmin">Run as Admin</string>
+  <string name="AppLauncher.Settings.Edit">Edit</string>
+	<string name="AppLauncher.Settings.Delete">Delete</string>
+	<string name="AppLauncher.Settings.Test">Test</string>
+</resources>

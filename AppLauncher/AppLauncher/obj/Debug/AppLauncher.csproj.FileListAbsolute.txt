@@ -1,0 +1,17 @@
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\AppLauncher.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\AppLauncher.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.Common.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.UI.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.Utilities.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\HttpServer.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\UPnP.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\log4net.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.Common.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.UI.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\MediaPortal.Utilities.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\HttpServer.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\Debug\UPnP.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\bin\x86\Debug\AppLauncher.dll
+D:\Visual Basic\AppLauncher\AppLauncher\bin\x86\Debug\AppLauncher.pdb
+D:\Visual Basic\AppLauncher\AppLauncher\obj\Debug\AppLauncher.dll
+D:\Visual Basic\AppLauncher\AppLauncher\obj\Debug\AppLauncher.pdb
