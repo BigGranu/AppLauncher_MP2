@@ -43,7 +43,7 @@ namespace AppLauncher.Settings
     /// <summary>
     /// List of all Apps
     /// </summary>
-    [Setting(SettingScope.User, null)]
+    [Setting(SettingScope.User)]
     public List<App> AppsList { get; set; }
   }
 
@@ -59,7 +59,7 @@ namespace AppLauncher.Settings
       Password = string.Empty;
       IconPath = string.Empty;
       ScreenMode = string.Empty;
-      Id = string.Empty;
+      Id = new Guid();
       Admin = false;
     }
 
@@ -114,8 +114,8 @@ namespace AppLauncher.Settings
     /// <summary>
     /// Application Id
     /// </summary>
-    [Setting(SettingScope.User, "")]
-    public string Id { get; set; }
+    [Setting(SettingScope.User)]
+    public Guid Id { get; set; }
 
     /// <summary>
     /// run as Admin

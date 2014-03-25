@@ -53,14 +53,14 @@ namespace AppLauncher.Helper
       return File.Exists(title);
     }
 
-    public static void SetIds(Apps apps)
-    {
-      int x = 0;
-      foreach (App a in apps.AppsList)
-      {
-        x ++;
-        a.Id = Convert.ToString(x);
-      }
-    }
+    //public static void SetIds(Apps apps)
+    //{
+    //  int x = 0;
+    //  foreach (App a in apps.AppsList)
+    //  {
+    //    x ++;
+    //    a.Id = Convert.ToString(x);
+    //  }
+    //}
   }
 }

@@ -53,7 +53,7 @@ namespace AppLauncher.Models
 
     #region Propertys
 
-    private static readonly AbstractProperty      _asAdmin = new WProperty(typeof(bool), true);
+    private static readonly AbstractProperty _asAdmin = new WProperty(typeof(bool), true);
 
     public AbstractProperty AsAdminProperty
     {
@@ -62,7 +62,7 @@ namespace AppLauncher.Models
 
     public bool AsAdmin
     {
-      get { return (bool) _asAdmin.GetValue(); }
+      get { return (bool)_asAdmin.GetValue(); }
       set { _asAdmin.SetValue(value); }
     }
 
@@ -286,7 +286,19 @@ namespace AppLauncher.Models
         if (AppLauncherSettingsEdit.CurrentApp != null)
           _apps.AppsList.Remove(AppLauncherSettingsEdit.CurrentApp);
 
-        var app = new App { ShortName = ShortName, ApplicationPath = AppPath, Arguments = Arguments, Description = Description, IconPath = IconPath, Password = Password, Username = Username, ScreenMode = _screenMode, Admin = AsAdmin};
+        var app = new App
+        {
+          ShortName = ShortName,
+          ApplicationPath = AppPath,
+          Arguments = Arguments,
+          Description = Description,
+          IconPath = IconPath,
+          Password = Password,
+          Username = Username,
+          ScreenMode = _screenMode,
+          Id = Guid.NewGuid(),
+          Admin = AsAdmin
+        };
         _apps.AppsList.Add(app);
       }
       Clear();
@@ -339,7 +351,6 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Help.SetIds(_apps);
       ServiceRegistration.Get<ISettingsManager>().Save(_apps);
       AppLauncherSettingsEdit.CurrentApp = null;
     }

@@ -54,7 +54,7 @@ namespace AppLauncher.Models
 
     public static void StartApp(ListItem item)
     {
-      Start(_apps.AppsList.FirstOrDefault(a => a.Id == (string)item.AdditionalProperties[ID]));
+      Start(_apps.AppsList.FirstOrDefault(a => Convert.ToString(a.Id) == (string)item.AdditionalProperties[ID]));
     }
 
     #endregion

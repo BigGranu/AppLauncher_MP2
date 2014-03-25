@@ -45,7 +45,7 @@ namespace AppLauncher.Models
 
     public void Select(ListItem item)
     {
-      foreach (var a in _apps.AppsList.Where(a => a.Id  == (string)item.AdditionalProperties[ID]))
+      foreach (var a in _apps.AppsList.Where(a => Convert.ToString(a.Id)  == (string)item.AdditionalProperties[ID]))
       {
         _apps.AppsList.Remove(a);
         break;
@@ -67,7 +67,7 @@ namespace AppLauncher.Models
        foreach (var a in _apps.AppsList)
       {
         var item = new ListItem();
-        item.AdditionalProperties[ID] = a.Id ;
+        item.AdditionalProperties[ID] = Convert.ToString(a.Id);
         item.SetLabel("Name", a.ShortName);
         item.SetLabel("ImageSrc", a.IconPath);
         Items.Add(item);
@@ -94,7 +94,7 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Help.SetIds(_apps);
+      // Help.SetIds(_apps);
       ServiceRegistration.Get<ISettingsManager>().Save(_apps);
     }
 
