@@ -25,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AppLauncher.Helper;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.Settings;
@@ -97,7 +96,6 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      // Help.SetIds(_apps);
       ServiceRegistration.Get<ISettingsManager>().Save(_apps);
     }
 

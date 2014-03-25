@@ -67,7 +67,7 @@ namespace AppLauncher.Models
       {
         _pInfo = new ProcessStartInfo { FileName = app.ApplicationPath, Arguments = app.Arguments };
         
-        SetWindoStyle(app.ScreenMode);
+        _pInfo.WindowStyle = app.WindowStyle;
 
         if (app.Admin == false & app.Username != "" & app.Password != "")
         {
@@ -82,21 +82,6 @@ namespace AppLauncher.Models
       {
         Console.WriteLine(ex.StackTrace);
       }
-    }
-
-    private static void SetWindoStyle(string mode)
-    {
-      if (mode == "0")
-        _pInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-      if (mode == "1")
-        _pInfo.WindowStyle = ProcessWindowStyle.Minimized;
-
-      if (mode == "2")
-        _pInfo.WindowStyle = ProcessWindowStyle.Normal;
-
-      if (mode == "3")
-        _pInfo.WindowStyle = ProcessWindowStyle.Maximized;
     }
 
     private static SecureString ToSecureString(string password)
@@ -119,7 +104,7 @@ namespace AppLauncher.Models
       foreach (var a in _apps.AppsList)
       {
         var item = new ListItem();
-        item.AdditionalProperties[ID] = a.Id;
+        item.AdditionalProperties[ID] = Convert.ToString(a.Id);
         item.SetLabel("ImageSrc", a.IconPath);
         item.SetLabel("Description", a.Description);
         item.SetLabel("Name", a.ShortName);

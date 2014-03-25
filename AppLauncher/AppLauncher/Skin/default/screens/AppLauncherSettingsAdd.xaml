@@ -94,7 +94,7 @@
           <!--View Mode-->
           <Label Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Content="[AppLauncher.Settings.Add.Screenmode]"
 				    VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="{ThemeResource SmallerFontSize}" Color="{ThemeResource TextColor}" />
-          <Label Grid.Row="12" Grid.Column="0" Margin="125,0,0,0" Content="{Binding Path=ScreenView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          <Label Grid.Row="12" Grid.Column="0" Margin="125,0,0,0" Content="{Binding Path=WindowStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				    VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="{ThemeResource SmallerFontSize}" Color="{ThemeResource TextColor}"/>
           <Button Grid.Row="13" Grid.Column="0" Content="[AppLauncher.Settings.Add.Minimum]" Width="125" HorizontalAlignment="Left"
 			      HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Command Minimum}" FontSize="{ThemeResource SmallerFontSize}" />

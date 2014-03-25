@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using AppLauncher.Helper;
 using AppLauncher.Settings;
@@ -43,9 +44,6 @@ namespace AppLauncher.Models
 
     public const string MODEL_ID_STR = "D47E22A3-3D0F-4A28-8EF6-1121B811508C";
     public const string VIEW_NOW = "[AppLauncher.Settings.Add.NoWindow]";
-    public const string VIEW_MIN = "[AppLauncher.Settings.Add.Minimum]";
-    public const string VIEW_NOR = "[AppLauncher.Settings.Add.Normal]";
-    public const string VIEW_MAX = "[AppLauncher.Settings.Add.Maximum]";
     public const string S_ICO = "[AppLauncher.Settings.Add.SearchIcon]";
     public const string S_APP = "[AppLauncher.Settings.Add.SearchApp]";
 
@@ -157,17 +155,17 @@ namespace AppLauncher.Models
       set { _iconPath.SetValue(value); }
     }
 
-    private static readonly AbstractProperty _screenView = new WProperty(typeof(string), VIEW_MAX);
+    private static readonly AbstractProperty _windowStyleString = new WProperty(typeof(string), string.Empty);
 
-    public AbstractProperty ScreenViewProperty
+    public AbstractProperty WindowStyleProperty
     {
-      get { return _screenView; }
+      get { return _windowStyleString; }
     }
 
-    public string ScreenView
+    public string WindowStyle
     {
-      get { return (string)_screenView.GetValue(); }
-      set { _screenView.SetValue(value); }
+      get { return (string)_windowStyleString.GetValue(); }
+      set { _windowStyleString.SetValue(value); }
     }
 
     #endregion
@@ -175,7 +173,7 @@ namespace AppLauncher.Models
     protected PathBrowserCloseWatcher _pathBrowserCloseWatcher = null;
 
     private Apps _apps = new Apps();
-    private string _screenMode = "3";
+    private static ProcessWindowStyle _windowStyle = ProcessWindowStyle.Maximized;
 
     public string Fallback = "no-icon.png";
 
@@ -195,7 +193,7 @@ namespace AppLauncher.Models
         IconPath = AppLauncherSettingsEdit.CurrentApp.IconPath;
         Password = AppLauncherSettingsEdit.CurrentApp.Password;
         Username = AppLauncherSettingsEdit.CurrentApp.Username;
-        ScreenModeToString(AppLauncherSettingsEdit.CurrentApp.ScreenMode);
+        WindowStyle = AppLauncherSettingsEdit.CurrentApp.WindowStyle.ToString();
       }
 
       Maximum();
@@ -257,26 +255,26 @@ namespace AppLauncher.Models
 
     public void NoWindow()
     {
-      ScreenView = VIEW_NOW;
-      _screenMode = "0";
+      _windowStyle = ProcessWindowStyle.Hidden;
+      WindowStyle = _windowStyle.ToString();
     }
 
     public void Minimum()
     {
-      ScreenView = VIEW_MIN;
-      _screenMode = "1";
+      _windowStyle = ProcessWindowStyle.Minimized;
+      WindowStyle = _windowStyle.ToString();
     }
 
     public void Normal()
     {
-      ScreenView = VIEW_NOR;
-      _screenMode = "2";
+      _windowStyle = ProcessWindowStyle.Normal;
+      WindowStyle = _windowStyle.ToString();
     }
 
     public void Maximum()
     {
-      ScreenView = VIEW_MAX;
-      _screenMode = "3";
+      _windowStyle = ProcessWindowStyle.Maximized;
+      WindowStyle = _windowStyle.ToString();
     }
 
     public void Add()
@@ -295,28 +293,13 @@ namespace AppLauncher.Models
           IconPath = IconPath,
           Password = Password,
           Username = Username,
-          ScreenMode = _screenMode,
+          WindowStyle = _windowStyle,
           Id = Guid.NewGuid(),
           Admin = AsAdmin
         };
         _apps.AppsList.Add(app);
       }
       Clear();
-    }
-
-    private void ScreenModeToString(string mode)
-    {
-      if (mode == "0")
-        NoWindow();
-
-      if (mode == "1")
-        Minimum();
-
-      if (mode == "2")
-        Normal();
-
-      if (mode == "3")
-        Maximum();
     }
 
     private void Clear()
@@ -328,8 +311,7 @@ namespace AppLauncher.Models
       IconPath = "";
       Password = "";
       Username = "";
-      ScreenView = VIEW_MAX;
-      _screenMode = "3";
+      _windowStyle = ProcessWindowStyle.Maximized;
     }
 
     #region IWorkflowModel implementation
