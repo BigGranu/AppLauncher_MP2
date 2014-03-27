@@ -25,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AppLauncher.Helper;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.Settings;
@@ -39,14 +38,13 @@ namespace AppLauncher.Models
   {
     public const string MODEL_ID_STR = "873EB147-C998-4632-8F86-D5E24062BE2E";
     public const string ID = "id";
-
     public static App CurrentApp;
     public static ItemsList Items = new ItemsList();
-    public Apps _apps = new Apps();
+    public Apps _apps;
 
     public void Select(ListItem item)
     {
-      foreach (var a in _apps.AppsList.Where(a => a.Id == (string)item.AdditionalProperties[ID]))
+      foreach (var a in _apps.AppsList.Where(a => Convert.ToString(a.Id) == (string)item.AdditionalProperties[ID]))
       {
         CurrentApp = a;
       }
@@ -56,9 +54,8 @@ namespace AppLauncher.Models
     private void Init()
     {
       CurrentApp = null;
-     
-      var settingsManager = ServiceRegistration.Get<ISettingsManager>();
-      _apps = settingsManager.Load<Apps>() ?? new Apps(new List<App>());
+      _apps = new Apps();
+      _apps = Helper.Help.LoadApps();
 
       FillItems();
     }
@@ -69,7 +66,7 @@ namespace AppLauncher.Models
        foreach (var a in _apps.AppsList)
       {
         var item = new ListItem();
-        item.AdditionalProperties[ID] = a.Id ;
+        item.AdditionalProperties[ID] = Convert.ToString(a.Id);
         item.SetLabel("Name", a.ShortName);
         item.SetLabel("ImageSrc", a.IconPath);
         Items.Add(item);
@@ -96,8 +93,7 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Help.SetIds(_apps);
-      ServiceRegistration.Get<ISettingsManager>().Save(_apps);
+      Helper.Help.SaveApps(_apps);
     }
 
     public void ChangeModelContext(NavigationContext oldContext, NavigationContext newContext, bool push)
@@ -111,7 +107,7 @@ namespace AppLauncher.Models
 
     public void Reactivate(NavigationContext oldContext, NavigationContext newContext)
     {
-      // Todo: select any or the Last ListItem
+      Init();
     }
 
     public void UpdateMenuActions(NavigationContext context, IDictionary<Guid, WorkflowAction> actions)

@@ -57,13 +57,14 @@ namespace AppLauncher.Dialoges
 
     #region Propertys
 
+    /// <summary>
+    /// Hold the Length of the largest Path (Only to view the Dialog in one width)
+    /// </summary>
     private static readonly AbstractProperty _maxStringProperty = new WProperty(typeof(string), string.Empty);
-
     public AbstractProperty MaxStringProperty
     {
       get { return _maxStringProperty; }
     }
-
     public string MaxString
     {
       get { return (string)_maxStringProperty.GetValue(); }
@@ -76,77 +77,63 @@ namespace AppLauncher.Dialoges
 
     public void Init()
     {
+      // Read the Softwarekey from Regiytry (only for installed Software)
       var rKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\App Paths");
 
       if (rKey == null) return;
       var sKeyNames = rKey.GetSubKeyNames();
 
+      // Loop over all Keys
       foreach (var sKeyName in sKeyNames)
       {
         var sKey = Registry.LocalMachine.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\App Paths\" + sKeyName);
 
         if (sKey == null) continue;
 
+        // Read the Applicationpath
         var path = (string)sKey.GetValue("", "", RegistryValueOptions.None);
 
         if (path == null | !File.Exists(path)) continue;
 
+        // only executable Files
         if (!path.EndsWith(".exe")) continue;
 
+        // Set the maxLength for Dialodwidth
         if (path.Length > MaxString.Length)
           MaxString = path;
 
+        // Fill the List with Items
         var item = new ListItem();
         item.AdditionalProperties[NAME] = sKeyName.Replace(".exe", "");
         item.AdditionalProperties[PATH] = path;
         item.SetLabel("Name", sKeyName.Replace(".exe", ""));
 
+        // Extract the Icon
         var icon = Icon.ExtractAssociatedIcon(path);
 
         if (icon != null)
         {
+          // Check if Icon allready exists and save it then not
           string iconPath = Help.GetIconPfad(sKeyName, icon.ToBitmap());
           item.SetLabel("ImageSrc", iconPath);
           item.AdditionalProperties[ICON] = iconPath;
         }
-
         items.Add(item);
       }
-
       items.FireChange();
     }
 
     public void Select(ListItem item)
     {
+      // Added the selected Application to the Screen
       AppLauncherSettingsAdd.AppPath = (string)item.AdditionalProperties[PATH];
       AppLauncherSettingsAdd.IconPath = (string)item.AdditionalProperties[ICON];
       if (AppLauncherSettingsAdd.ShortName == "")
         AppLauncherSettingsAdd.ShortName = (string)item.AdditionalProperties[NAME];
 
+      // Close the Dialog
       ServiceRegistration.Get<IScreenManager>().CloseTopmostDialog();
     }
-
-    #endregion
-
-    #region Private Members
-
-    //private static string GetIconPfad(string title, Image bmp)
-    //{
-    //  var path = AppLauncherSettingsEdit.AppLauncherFolder + "\\" + title + ".bmp";
-
-    //  if (!IconExists(path))
-    //  {
-    //    bmp.Save(path);
-    //  }
-    //  return path;
-    //}
-
-    //private static bool IconExists(string title)
-    //{
-    //  if (!Directory.Exists(AppLauncherSettingsEdit.AppLauncherFolder))
-    //    Directory.CreateDirectory(AppLauncherSettingsEdit.AppLauncherFolder);
-    //  return File.Exists(title);
-    //}
 
     #endregion
 

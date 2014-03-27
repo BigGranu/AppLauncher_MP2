@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using MediaPortal.Common.Settings;
 
 namespace AppLauncher.Settings
@@ -43,7 +44,7 @@ namespace AppLauncher.Settings
     /// <summary>
     /// List of all Apps
     /// </summary>
-    [Setting(SettingScope.User, null)]
+    [Setting(SettingScope.User)]
     public List<App> AppsList { get; set; }
   }
 
@@ -58,8 +59,8 @@ namespace AppLauncher.Settings
       Username = string.Empty;
       Password = string.Empty;
       IconPath = string.Empty;
-      ScreenMode = string.Empty;
-      Id = string.Empty;
+      WindowStyle = new ProcessWindowStyle();
+      Id = new Guid();
       Admin = false;
     }
 
@@ -108,14 +109,14 @@ namespace AppLauncher.Settings
     /// <summary>
     /// ScreenMode
     /// </summary>
-    [Setting(SettingScope.User, "")]
-    public string ScreenMode { get; set; }
+    [Setting(SettingScope.User, ProcessWindowStyle.Maximized)]
+    public ProcessWindowStyle WindowStyle { get; set; }
 
     /// <summary>
     /// Application Id
     /// </summary>
-    [Setting(SettingScope.User, "")]
-    public string Id { get; set; }
+    [Setting(SettingScope.User)]
+    public Guid Id { get; set; }
 
     /// <summary>
     /// run as Admin

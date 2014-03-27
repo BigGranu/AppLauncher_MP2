@@ -25,7 +25,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AppLauncher.Helper;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.Settings;
@@ -39,13 +38,15 @@ namespace AppLauncher.Models
   {
     public const string MODEL_ID_STR = "3C19B13A-D64C-4918-9AD6-17EC2D9AAE29";
     public const string ID = "id";
-
     public static ItemsList Items = new ItemsList();
     public Apps _apps = new Apps();
 
+    /// <summary>
+    /// Delete the selected Application
+    /// </summary>
     public void Select(ListItem item)
     {
-      foreach (var a in _apps.AppsList.Where(a => a.Id  == (string)item.AdditionalProperties[ID]))
+      foreach (var a in _apps.AppsList.Where(a => Convert.ToString(a.Id)  == (string)item.AdditionalProperties[ID]))
       {
         _apps.AppsList.Remove(a);
         break;
@@ -53,21 +54,25 @@ namespace AppLauncher.Models
       FillItems();
     }
 
+    /// <summary>
+    /// Read the Applications from MP Registration
+    /// </summary>
     private void Init()
     {
-      var settingsManager = ServiceRegistration.Get<ISettingsManager>();
-      _apps = settingsManager.Load<Apps>() ?? new Apps(new List<App>());
-
+      _apps = Helper.Help.LoadApps();
       FillItems();
     }
 
+    /// <summary>
+    /// Fill the Itemslist with all Applications
+    /// </summary>
     private void FillItems()
     {
        Items.Clear();
        foreach (var a in _apps.AppsList)
       {
         var item = new ListItem();
-        item.AdditionalProperties[ID] = a.Id ;
+        item.AdditionalProperties[ID] = Convert.ToString(a.Id);
         item.SetLabel("Name", a.ShortName);
         item.SetLabel("ImageSrc", a.IconPath);
         Items.Add(item);
@@ -94,8 +99,7 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Help.SetIds(_apps);
-      ServiceRegistration.Get<ISettingsManager>().Save(_apps);
+      Helper.Help.SaveApps(_apps);
     }
 
     public void ChangeModelContext(NavigationContext oldContext, NavigationContext newContext, bool push)

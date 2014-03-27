@@ -9,7 +9,7 @@
     <ResourceWrapper x:Key="Header_Text" Resource="[AppLauncher.Title]"/>
 
     <Model x:Key="Model" Id="624339C2-0D3B-437B-8046-6F540D704A93"/>
-
+    
     <!-- Contents -->
     <ControlTemplate x:Key="Contents_Template">
       <DockPanel DataContext="{Binding Source={StaticResource Model}}">

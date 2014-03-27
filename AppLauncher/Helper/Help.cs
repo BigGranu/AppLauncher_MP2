@@ -22,19 +22,32 @@
 
 #endregion
 
-using System;
-using System.Drawing;
-using System.IO;
+using System.Collections.Generic;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.PathManager;
+using System;
+using System.Drawing;
+using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using MediaPortal.Common.Settings;
 
 namespace AppLauncher.Helper
 {
+  /// <summary>
+  /// Little Helpers 
+  /// </summary>
   public class Help
   {
     public static string AppLauncherFolder = ServiceRegistration.Get<IPathManager>().GetPath(@"<DATA>\AppLauncher");
 
+    /// <summary>
+    /// Get the Path for a Icon. If no Path found, the Icon will saved.
+    /// </summary>
+    /// <param name="title">Title for the Icon</param>
+    /// <param name="bmp">The Icon as .bmp</param>
+    /// <returns>Path for the Icon</returns>
     public static string GetIconPfad(string title, Image bmp)
     {
       var path = AppLauncherFolder + "\\" + title + ".bmp";
@@ -53,13 +66,128 @@ namespace AppLauncher.Helper
       return File.Exists(title);
     }
 
-    public static void SetIds(Apps apps)
+    public static void SaveApps(Apps apps)
     {
-      int x = 0;
-      foreach (App a in apps.AppsList)
+      foreach (var a in apps.AppsList)
       {
-        x ++;
-        a.Id = Convert.ToString(x);
+        if (a.Password == "") continue;
+        var s = Crypter.Encrypt(a.Password);
+        a.Password = s;
+      }
+      ServiceRegistration.Get<ISettingsManager>().Save(apps);
+    }
+
+    public static Apps LoadApps()
+    {
+      var settingsManager = ServiceRegistration.Get<ISettingsManager>();
+      var apps = settingsManager.Load<Apps>() ?? new Apps(new List<App>());
+
+      foreach (var a in apps.AppsList)
+      {
+        if (a.Password == "") continue;
+        var s = Crypter.Decrypt(a.Password);
+        a.Password = s;
+      }
+
+      return apps;
+    }
+  }
+
+  /// <summary>
+  /// Cryptographer for strings e.g. Password
+  /// </summary>
+  public class Crypter
+  {
+    private const string KEY = "MediaPortal2";
+
+    /// <summary>
+    /// Encrypt the given string using the default key.
+    /// </summary>
+    /// <param name="strToEncrypt">The string to be encrypted.</param>
+    /// <returns>The encrypted string.</returns>
+    public static string Encrypt(string strToEncrypt)
+    {
+      try
+      {
+        return Encrypt(strToEncrypt, KEY);
+      }
+      catch (Exception ex)
+      {
+        return "Wrong Input. " + ex.Message;
+      }
+    }
+
+    /// <summary>
+    /// Decrypt the given string using the default key.
+    /// </summary>
+    /// <param name="strEncrypted">The string to be decrypted.</param>
+    /// <returns>The decrypted string.</returns>
+    public static string Decrypt(string strEncrypted)
+    {
+      try
+      {
+        return Decrypt(strEncrypted, KEY);
+      }
+      catch (Exception ex)
+      {
+        return "Wrong Input. " + ex.Message;
+      }
+    }
+
+    /// <summary>
+    /// Encrypt the given string using the specified key.
+    /// </summary>
+    /// <param name="strToEncrypt">The string to be encrypted.</param>
+    /// <param name="strKey">The encryption key.</param>
+    /// <returns>The encrypted string.</returns>
+    private static string Encrypt(string strToEncrypt, string strKey)
+    {
+      try
+      {
+        var objDesCrypto = new TripleDESCryptoServiceProvider();
+        var objHashMd5 = new MD5CryptoServiceProvider();
+        var strTempKey = strKey;
+        var byteHash = objHashMd5.ComputeHash(Encoding.Default.GetBytes(strTempKey));
+
+        objDesCrypto.Key = byteHash;
+        objDesCrypto.Mode = CipherMode.ECB;
+
+        var byteBuff = Encoding.Default.GetBytes(strToEncrypt);
+        return Convert.ToBase64String(objDesCrypto.CreateEncryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
+      }
+      catch (Exception ex)
+      {
+        return "Wrong Input. " + ex.Message;
+      }
+    }
+
+
+    /// <summary>
+    /// Decrypt the given string using the specified key.
+    /// </summary>
+    /// <param name="strEncrypted">The string to be decrypted.</param>
+    /// <param name="strKey">The decryption key.</param>
+    /// <returns>The decrypted string.</returns>
+    private static string Decrypt(string strEncrypted, string strKey)
+    {
+      try
+      {
+        var objDesCrypto = new TripleDESCryptoServiceProvider();
+        var objHashMd5 = new MD5CryptoServiceProvider();
+        var strTempKey = strKey;
+        var byteHash = objHashMd5.ComputeHash(Encoding.Default.GetBytes(strTempKey));
+
+        objDesCrypto.Key = byteHash;
+        objDesCrypto.Mode = CipherMode.ECB;
+
+        var byteBuff = Convert.FromBase64String(strEncrypted);
+        var strDecrypted = Encoding.Default.GetString(objDesCrypto.CreateDecryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
+
+        return strDecrypted;
+      }
+      catch (Exception ex)
+      {
+        return "Wrong Input. " + ex.Message;
       }
     }
   }
