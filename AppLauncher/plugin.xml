@@ -24,6 +24,7 @@
     <Model Id="D47E22A3-3D0F-4A28-8EF6-1121B811508C" ClassName="AppLauncher.Models.AppLauncherSettingsAdd"/>
     <Model Id="3C19B13A-D64C-4918-9AD6-17EC2D9AAE29" ClassName="AppLauncher.Models.AppLauncherSettingsDelete"/>
     <Model Id="ABA8802E-3E55-49DC-A446-E128D5B4A1D1" ClassName="AppLauncher.Dialoges.DlgAppLauncherAllApps"/>
+    <Model Id="90DB10F3-FD09-42F9-9DED-12E6804FD098" ClassName="AppLauncher.Dialoges.DlgSwitchPlaying"/>
   </Register>
 
   <Register Location="/Workflow/States">
@@ -56,6 +57,12 @@
       DialogScreen="DlgAppLauncherAllApps"
       DisplayLabel="[AppLauncher.Settings.AllApps]"
       WorkflowModel="ABA8802E-3E55-49DC-A446-E128D5B4A1D1"/>
+
+    <DialogState Id="5F2EAB3D-C616-46A1-AB38-1C584CE41A67"
+      Name="SwitchPlaying"
+      DialogScreen="DlgSwitchPlaying"
+      DisplayLabel="[AppLauncher.SwitchPlaying]"
+      WorkflowModel="90DB10F3-FD09-42F9-9DED-12E6804FD098"/>
   </Register>
 
   <Register Location="/Resources/Skin">

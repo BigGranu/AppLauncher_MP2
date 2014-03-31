@@ -44,11 +44,16 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialoges\DlgAppLauncherAllApps.cs" />
+    <Compile Include="Dialoges\DlgSwitchPlaying.cs" />
+    <Compile Include="Helper\Class1.cs" />
     <Compile Include="Helper\Help.cs" />
+    <Compile Include="Helper\KeyboardHook.cs" />
     <Compile Include="Models\AppLauncherSettingsAdd.cs" />
     <Compile Include="Models\AppLauncherHome.cs" />
     <Compile Include="Models\AppLauncherSettingsDelete.cs" />
@@ -113,7 +118,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Content Include="Skin\default\screens\DlgSwitchPlaying.xaml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

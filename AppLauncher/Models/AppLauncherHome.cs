@@ -27,11 +27,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security;
+using AppLauncher.Helper;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.Settings;
 using MediaPortal.UI.Presentation.DataObjects;
 using MediaPortal.UI.Presentation.Models;
+using MediaPortal.UI.Presentation.Players;
 using MediaPortal.UI.Presentation.Workflow;
 
 namespace AppLauncher.Models
@@ -47,11 +49,12 @@ namespace AppLauncher.Models
 
     public static ItemsList items = new ItemsList();
 
+    public static Helper.KeyboardHook _kh;
+
     private static Apps _apps;
     private static ProcessStartInfo _pInfo;
 
     #region public Methods
-
 
     public static void StartApp(ListItem item)
     {
@@ -66,6 +69,11 @@ namespace AppLauncher.Models
     {
       try
       {
+        if (ServiceRegistration.Get<IPlayerContextManager>().NumActivePlayerContexts > 0)
+        {         
+          ServiceRegistration.Get<IWorkflowManager>().NavigatePushAsync(new Guid("5F2EAB3D-C616-46A1-AB38-1C584CE41A67"));
+        }
+
         _pInfo = new ProcessStartInfo { FileName = app.ApplicationPath, Arguments = app.Arguments };
         
         _pInfo.WindowStyle = app.WindowStyle;
@@ -83,6 +91,11 @@ namespace AppLauncher.Models
       {
         Console.WriteLine(ex.StackTrace);
       }
+    }
+
+    public static void ExitPoint(KeyboardHook.KeyboardHookEventArgs e)
+    {
+
     }
 
     private static SecureString ToSecureString(string password)

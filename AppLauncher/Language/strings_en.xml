@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="AppLauncher.Title">App Launcher</string>
+  <string name="AppLauncher.Stop">Stop</string>
+  <string name="AppLauncher.Pause">Pause</string>
+  <string name="AppLauncher.SwitchPlaying">Switch the Playingstatus</string>
 	<string name="AppLauncher.Settings.Title">Settings</string>	
 	<string name="AppLauncher.Settings.Helptext">Select your extern Apps</string>
 	<string name="AppLauncher.Settings.Add">Added</string>
