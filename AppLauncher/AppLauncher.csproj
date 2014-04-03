@@ -34,16 +34,17 @@
   <ItemGroup>
     <Reference Include="MediaPortal.Common">
       <HintPath>D:\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MediaPortal.UI">
       <HintPath>D:\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
