@@ -1,28 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Include
   xmlns="www.team-mediaportal.com/2008/mpf/directx"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  Source="screens\master_configuration_dialog.xaml">
+  Source="screens\master_configuration_dialog_wb.xaml">
   <Include.Resources>
 
     <!-- Header -->
-    <ResourceWrapper x:Key="Dialog_Header_Text" Resource="[AppLauncher.SelectApp]"/>
+    <ResourceWrapper x:Key="Dialog_Header_Text" Resource="[AppLauncher.RemoveGroup]"/>
 
-    <Model x:Key="Model" Id="ABA8802E-3E55-49DC-A446-E128D5B4A1D1"/>
+    <Model x:Key="Model" Id="3C38DF86-AE80-4411-8C3D-9480E7AAB279"/>
 
     <ControlTemplate x:Key="Contents_Template">
       <DockPanel DataContext="{Binding Source={StaticResource Model}}">
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="10*" />
           </Grid.RowDefinitions>
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*" />
-          </Grid.ColumnDefinitions>
- 
-          <!--List of Apps-->
-          <ListView x:Name="Apps" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource ContentsMenuListViewStyle}"
-            ItemsSource="{Binding Path=items, Mode=TwoWay}">
+
+          <ListView x:Name="lvFavorites" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource AppLauncherSelectListViewStyle}"
+            ItemsSource="{Binding Path=items}" >
             <ListView.Resources>
               <CommandList x:Key="Menu_Command">
                 <Command Source="{StaticResource Model}" Path="Select">
@@ -34,9 +31,10 @@
             </ListView.Resources>
           </ListView>
 
+          <Button Grid.Row="1" Margin="10,0,10,0" Content="[Webradio.Dialog.Delelete]" Command="{Command Delete}"/>
+
         </Grid>
       </DockPanel>
     </ControlTemplate>
   </Include.Resources>
 </Include>
-

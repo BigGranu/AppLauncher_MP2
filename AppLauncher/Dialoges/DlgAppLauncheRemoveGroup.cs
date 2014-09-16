@@ -24,129 +24,72 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Security;
 using AppLauncher.Helper;
 using AppLauncher.Settings;
 using MediaPortal.Common;
 using MediaPortal.Common.Settings;
 using MediaPortal.UI.Presentation.DataObjects;
 using MediaPortal.UI.Presentation.Models;
-using MediaPortal.UI.Presentation.Players;
+using MediaPortal.UI.Presentation.Screens;
 using MediaPortal.UI.Presentation.Workflow;
 
-namespace AppLauncher.Models
+namespace AppLauncher.Dialoges
 {
-  public class AppLauncherHome : IWorkflowModel
+  public class DlgAppLauncheRemoveGroup : IWorkflowModel
   {
     #region Consts
 
-    public const string MODEL_ID_STR = "624339C2-0D3B-437B-8046-6F540D704A93";
-    public const string ID = "id";
+    public const string MODEL_ID_STR = "3C38DF86-AE80-4411-8C3D-9480E7AAB279";
     public const string GROUP = "group";
 
     #endregion
 
+    #region Vars
+
     public static ItemsList items = new ItemsList();
-    public static ItemsList groups = new ItemsList();
-
     private static Apps _apps;
-    private static ProcessStartInfo _pInfo;
     private static List<string> _groups;
-
-    #region public Methods
-
-    public static void StartApp(ListItem item)
-    {
-      Start(_apps.AppsList.FirstOrDefault(a => Convert.ToString(a.Id) == (string)item.AdditionalProperties[ID]));
-    }
-
-    public static void SelectGroup(ListItem item)
-    {
-      FillItem((string)item.AdditionalProperties[GROUP]);
-    }
 
     #endregion
 
-    #region private Methods
+    #region public Members
 
-    private static void Start(App app)
+    public void Init()
     {
-      try
-      {
-        if (ServiceRegistration.Get<IPlayerContextManager>().NumActivePlayerContexts > 0)
-        {         
-          ServiceRegistration.Get<IWorkflowManager>().NavigatePushAsync(new Guid("5F2EAB3D-C616-46A1-AB38-1C584CE41A67"));
-        }
-
-        _pInfo = new ProcessStartInfo { FileName = app.ApplicationPath, Arguments = app.Arguments };
-        
-        _pInfo.WindowStyle = app.WindowStyle;
-
-        if (app.Admin == false & app.Username != "" & app.Password != "")
-        {
-          _pInfo.UserName = app.Username;
-          _pInfo.Password = ToSecureString(app.Password);
-        }
-
-        var p = new Process { StartInfo = _pInfo };
-        p.Start();
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.StackTrace);
-      }
-    }
-
-    private static SecureString ToSecureString(string password)
-    {
-      var pass = new SecureString();
-      foreach (var c in password)
-      {
-        pass.AppendChar(c);
-      }
-      return pass;
-    }
-
-    private static void Init()
-    {
-      groups.Clear();
-
       var settingsManager = ServiceRegistration.Get<ISettingsManager>();
-      _apps = settingsManager.Load<Apps>();
-      _groups = new List<string>();
+       _apps = settingsManager.Load<Apps>();
+       _groups = new List<string>();
 
-      foreach (var a in _apps.AppsList.Where(a => !_groups.Contains(a.Group)))
+      items.Clear();
+
+      foreach (var a in _apps.AppsList.Where(a => !_groups.Contains(a.Group) & a.Group != ""))
       {
         _groups.Add(a.Group);
         var item = new ListItem();
         item.AdditionalProperties[GROUP] = a.Group;
         item.SetLabel("Name", a.Group);
-        groups.Add(item);
-      }
-      groups.FireChange();
-
-      FillItem("");
-    }
-
-    private static void FillItem(string group)
-    {
-      items.Clear();
-
-      foreach (var a in _apps.AppsList)
-      {
-        if (a.Group == group)
-        {
-          var item = new ListItem();
-          item.AdditionalProperties[ID] = Convert.ToString(a.Id);
-          item.SetLabel("ImageSrc", a.IconPath);
-          item.SetLabel("Description", a.Description);
-          item.SetLabel("Name", a.ShortName);
-          items.Add(item);
-        }
+        items.Add(item);
       }
       items.FireChange();
+    }
+
+    public void Select(ListItem item)
+    {
+      item.Selected = item.Selected != true;
+      item.FireChange();
+    }
+
+    public void Delete()
+    {
+      foreach (var a in items.Where(item => item.Selected).SelectMany(item => _apps.AppsList.Where(a => a.Group == (string)item.AdditionalProperties[GROUP])))
+      {
+        a.Group = "";
+      }
+      Help.SaveApps(_apps);
+
+      // Close the Dialog
+      ServiceRegistration.Get<IScreenManager>().CloseTopmostDialog();
     }
 
     #endregion

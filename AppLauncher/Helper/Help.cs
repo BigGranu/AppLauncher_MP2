@@ -42,6 +42,8 @@ namespace AppLauncher.Helper
   {
     public static string AppLauncherFolder = ServiceRegistration.Get<IPathManager>().GetPath(@"<DATA>\AppLauncher");
 
+    public static List<string> Groups = new List<string>(); 
+
     /// <summary>
     /// Get the Path for a Icon. If no Path found, the Icon will saved.
     /// </summary>

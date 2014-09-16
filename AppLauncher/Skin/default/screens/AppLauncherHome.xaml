@@ -15,15 +15,30 @@
       <DockPanel DataContext="{Binding Source={StaticResource Model}}">
         <Grid>
           <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="70*" />
           </Grid.ColumnDefinitions>
           <Grid.RowDefinitions>
             <RowDefinition Height="100*" />
           </Grid.RowDefinitions>
 
+          <!--List of Groups-->
+          <ListView x:Name="Groups" Margin="15,5,15,30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource ContentsMenuListViewStyle}" 
+            ItemsSource="{Binding Path=groups, Mode=TwoWay}"  Grid.Column="0">
+            <ListView.Resources>
+              <CommandList x:Key="Menu_Command">
+                <Command Source="{StaticResource Model}" Path="SelectGroup">
+                  <Command.Parameters>
+                    <LateBoundValue BindingValue="{Binding}"/>
+                  </Command.Parameters>
+                </Command>
+              </CommandList>
+            </ListView.Resources>
+          </ListView>
+          
           <!--List of Apps-->
-          <ListView x:Name="Qualitys" Margin="15,5,15,30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource ContentsMenuListViewStyle}"
-            ItemsSource="{Binding Path=items, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+          <ListView x:Name="Apps" Margin="15,5,15,30" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource AppLauncherListViewStyle}"
+            ItemsSource="{Binding Path=items, Mode=TwoWay}" Grid.Column="1">
             <ListView.Resources>
               <CommandList x:Key="Menu_Command">
                 <Command Source="{StaticResource Model}" Path="StartApp">

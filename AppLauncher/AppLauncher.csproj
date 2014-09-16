@@ -33,12 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MediaPortal.Common">
-      <HintPath>D:\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.Common.dll</HintPath>
     </Reference>
     <Reference Include="MediaPortal.UI">
-      <HintPath>D:\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.UI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\MediaPortal-2\MediaPortal\Bin\MP2-Client\bin\x86\Debug\MediaPortal.UI.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -49,10 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialoges\DlgAppLauncherAllApps.cs" />
+    <Compile Include="Dialoges\DlgAppLauncheRemoveGroup.cs" />
+    <Compile Include="Dialoges\DlgAppLauncherGroups.cs" />
     <Compile Include="Dialoges\DlgSwitchPlaying.cs" />
-    <Compile Include="Helper\Class1.cs" />
     <Compile Include="Helper\Help.cs" />
-    <Compile Include="Helper\KeyboardHook.cs" />
     <Compile Include="Models\AppLauncherSettingsAdd.cs" />
     <Compile Include="Models\AppLauncherHome.cs" />
     <Compile Include="Models\AppLauncherSettingsDelete.cs" />
@@ -66,10 +64,18 @@
     <Content Include="plugin.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Skin\default\images\873EB147-C998-4632-8F86-D5E24062BE2E.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Skin\default\images\no-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Skin\default\workflow\AppLauncher-actions.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Skin\default\images\" />
+    <Content Include="Skin\default\screens\DlgAppLauncherGroups.xaml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Skin\default\screens\AppLauncherHome.xaml">
@@ -123,6 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="build.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Skin\default\screens\DlgAppLauncherRemoveGroup.xaml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

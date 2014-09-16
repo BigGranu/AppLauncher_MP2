@@ -102,6 +102,19 @@ namespace AppLauncher.Models
       set { _arguments.SetValue(value); }
     }
 
+    private static readonly AbstractProperty _group = new WProperty(typeof(string), string.Empty);
+
+    public AbstractProperty GroupProperty
+    {
+      get { return _group; }
+    }
+
+    public static string Group
+    {
+      get { return (string)_group.GetValue(); }
+      set { _group.SetValue(value); }
+    }
+
     private static readonly AbstractProperty _description = new WProperty(typeof(string), string.Empty);
 
     public AbstractProperty DescriptionProperty
@@ -192,6 +205,7 @@ namespace AppLauncher.Models
         Password = AppLauncherSettingsEdit.CurrentApp.Password;
         Username = AppLauncherSettingsEdit.CurrentApp.Username;
         WindowStyle = AppLauncherSettingsEdit.CurrentApp.WindowStyle.ToString();
+        Group = AppLauncherSettingsEdit.CurrentApp.Group;
       }
 
       Maximum();
@@ -231,10 +245,13 @@ namespace AppLauncher.Models
       ServiceRegistration.Get<IWorkflowManager>().NavigatePushAsync(new Guid("5FB79A89-3CA6-4DD0-A867-7B934470CFC2"));
     }
 
+    public void SelectGroup()
+    {
+      ServiceRegistration.Get<IWorkflowManager>().NavigatePushAsync(new Guid("A40761BD-8F25-49B0-8448-D5CE96375286"));
+    }
+
     public void SearchIcon()
     {
- 
-
       string initialPath = "C:\\";
       Guid dialogHandle = ServiceRegistration.Get<IPathBrowser>().ShowPathBrowser(S_ICO, true, false,
         string.IsNullOrEmpty(initialPath) ? null : LocalFsResourceProviderBase.ToResourcePath(initialPath),
@@ -295,7 +312,8 @@ namespace AppLauncher.Models
           Username = Username,
           WindowStyle = _windowStyle,
           Id = Guid.NewGuid(),
-          Admin = AsAdmin
+          Admin = AsAdmin,
+          Group = Group
         };
         _apps.AppsList.Add(app);
       }
@@ -315,6 +333,7 @@ namespace AppLauncher.Models
       Password = "";
       Username = "";
       _windowStyle = ProcessWindowStyle.Maximized;
+      Group = "";
     }
 
     #region IWorkflowModel implementation

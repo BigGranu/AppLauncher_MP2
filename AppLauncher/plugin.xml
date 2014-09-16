@@ -25,6 +25,8 @@
     <Model Id="3C19B13A-D64C-4918-9AD6-17EC2D9AAE29" ClassName="AppLauncher.Models.AppLauncherSettingsDelete"/>
     <Model Id="ABA8802E-3E55-49DC-A446-E128D5B4A1D1" ClassName="AppLauncher.Dialoges.DlgAppLauncherAllApps"/>
     <Model Id="90DB10F3-FD09-42F9-9DED-12E6804FD098" ClassName="AppLauncher.Dialoges.DlgSwitchPlaying"/>
+    <Model Id="22C454B9-BFEA-4908-AA77-23795C53849C" ClassName="AppLauncher.Dialoges.DlgAppLauncherGroups"/>
+    <Model Id="3C38DF86-AE80-4411-8C3D-9480E7AAB279" ClassName="AppLauncher.Dialoges.DlgAppLauncheRemoveGroup"/>
   </Register>
 
   <Register Location="/Workflow/States">
@@ -55,7 +57,7 @@
     <DialogState Id="5FB79A89-3CA6-4DD0-A867-7B934470CFC2"
       Name="SelectSettingsApp"
       DialogScreen="DlgAppLauncherAllApps"
-      DisplayLabel="[AppLauncher.Settings.AllApps]"
+      DisplayLabel="[AppLauncher.Settings]"
       WorkflowModel="ABA8802E-3E55-49DC-A446-E128D5B4A1D1"/>
 
     <DialogState Id="5F2EAB3D-C616-46A1-AB38-1C584CE41A67"
@@ -63,6 +65,18 @@
       DialogScreen="DlgSwitchPlaying"
       DisplayLabel="[AppLauncher.SwitchPlaying]"
       WorkflowModel="90DB10F3-FD09-42F9-9DED-12E6804FD098"/>
+
+    <DialogState Id="A40761BD-8F25-49B0-8448-D5CE96375286"
+      Name="SelectGroup"
+      DialogScreen="DlgAppLauncherGroups"
+      DisplayLabel="[AppLauncher.SelectGroup]"
+      WorkflowModel="22C454B9-BFEA-4908-AA77-23795C53849C"/>
+    
+    <DialogState Id="683B8FB9-9032-4260-AF07-CDBAFDCA58AE"
+      Name="RemoveGroup"
+      DialogScreen="DlgAppLauncherRemoveGroup"
+      DisplayLabel="[AppLauncher.RemoveGroup]"
+      WorkflowModel="3C38DF86-AE80-4411-8C3D-9480E7AAB279"/>
   </Register>
 
   <Register Location="/Resources/Skin">
@@ -101,6 +115,12 @@
       HelpText="[AppLauncher.Settings.Delete.Helptext]"
       ClassName="AppLauncher.Settings.Configuration.Delete"
 			AdditionalData="WorkflowState=684211ED-48C9-4BD7-B9D8-4F7B10D63678,ConfAppPanel=..."/>
+    <CustomConfigSetting
+      Id="AppLauncherSettingsRemoveGroup"
+      Text="[AppLauncher.RemoveGroup]"
+      HelpText="[AppLauncher.Settings.RemoveGroup.Helptext]"
+      ClassName="AppLauncher.Settings.Configuration.RemoveGroup"
+      AdditionalData="WorkflowState=683B8FB9-9032-4260-AF07-CDBAFDCA58AE,ConfAppPanel=..."/>
   </Register>
   
 </Plugin>

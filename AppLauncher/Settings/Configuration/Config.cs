@@ -37,4 +37,8 @@ namespace AppLauncher.Settings.Configuration
   internal class Delete : CustomConfigSetting
   {
   }
+
+  internal class RemoveGroup : CustomConfigSetting
+  {
+  }
 }

@@ -6,22 +6,28 @@
   <Include.Resources>
 
     <!-- Header -->
-    <ResourceWrapper x:Key="Dialog_Header_Text" Resource="[AppLauncher.SelectApp]"/>
+    <ResourceWrapper x:Key="Dialog_Header_Text" Resource="[AppLauncher.SelectGroup]"/>
 
-    <Model x:Key="Model" Id="ABA8802E-3E55-49DC-A446-E128D5B4A1D1"/>
+    <Model x:Key="Model" Id="22C454B9-BFEA-4908-AA77-23795C53849C"/>
 
     <ControlTemplate x:Key="Contents_Template">
       <DockPanel DataContext="{Binding Source={StaticResource Model}}">
         <Grid>
           <Grid.RowDefinitions>
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*" />
           </Grid.ColumnDefinitions>
- 
+          <Label Grid.Row="0" Content="{Binding Path=MaxString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="1"></Label>
+
+          <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding ElementName=Apps,Path=CurrentItem}"
+              Content="{Binding [Path]}" FontSize="{ThemeResource SmallerFontSize}" Color="{ThemeResource TextColor}"/>
+
           <!--List of Apps-->
-          <ListView x:Name="Apps" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource ContentsMenuListViewStyle}"
+          <ListView x:Name="Apps" Grid.Row="2" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{ThemeResource ContentsMenuListViewStyle}"
             ItemsSource="{Binding Path=items, Mode=TwoWay}">
             <ListView.Resources>
               <CommandList x:Key="Menu_Command">

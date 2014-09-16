@@ -62,6 +62,7 @@ namespace AppLauncher.Settings
       WindowStyle = new ProcessWindowStyle();
       Id = new Guid();
       Admin = false;
+      Group = string.Empty;
     }
 
     /// <summary>
@@ -123,5 +124,11 @@ namespace AppLauncher.Settings
     /// </summary>
     [Setting(SettingScope.User, false)]
     public bool Admin { get; set; }
+
+    /// <summary>
+    /// AppGroup
+    /// </summary>
+    [Setting(SettingScope.User, "")]
+    public string Group { get; set; }
   }
 }
