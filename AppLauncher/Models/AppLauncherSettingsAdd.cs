@@ -231,6 +231,9 @@ namespace AppLauncher.Models
       _pathBrowserCloseWatcher = new PathBrowserCloseWatcher(this, dialogHandle, choosenPath =>
       {
         AppPath = LocalFsResourceProviderBase.ToDosPath(choosenPath);
+
+        ShortName = choosenPath.FileName.Substring(0, choosenPath.FileName.LastIndexOf(".", System.StringComparison.Ordinal));
+
         var icon = Icon.ExtractAssociatedIcon(AppPath);
 
         if (icon != null)
@@ -317,6 +320,7 @@ namespace AppLauncher.Models
         };
         _apps.AppsList.Add(app);
       }
+      Help.SaveApps(_apps);
       Clear();
     }
 
@@ -355,7 +359,6 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Help.SaveApps(_apps);
       AppLauncherSettingsEdit.CurrentApp = null;
     }
 

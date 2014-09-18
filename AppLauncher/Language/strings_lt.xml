@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="AppLauncher.Title">Programų paleidėjas</string>
+  <string name="AppLauncher.Stop">Stop</string>
+  <string name="AppLauncher.Pause">Pauzė</string>
+  <string name="AppLauncher.SwitchPlaying">Keisti Grojimo statusą</string>
+  <string name="AppLauncher.Settings.Title">Nustatymai</string>
+  <string name="AppLauncher.Settings.Helptext">Pasirinkti išorinę programą</string>
+  <string name="AppLauncher.Settings.Add">Pridėta</string>
+  <string name="AppLauncher.Settings.Add.Shortname">Trumpas pavadinimas</string>
+  <string name="AppLauncher.Settings.Add.Arguments">Argumentai</string>
+  <string name="AppLauncher.Settings.Add.Path">Programos kelias</string>
+  <string name="AppLauncher.Settings.Add.Description">Aprašymas</string>
+  <string name="AppLauncher.Settings.Add.Username">Vartotojo vardas</string>
+  <string name="AppLauncher.Settings.Add.Password">Slaptažodis</string>
+  <string name="AppLauncher.Settings.Add.Icon">Piktogramos kelias</string>
+  <string name="AppLauncher.Settings.Add.Screenmode">Ekrano režimas</string>
+  <string name="AppLauncher.Settings.Add.Search">Paieška</string>
+  <string name="AppLauncher.Settings.Add.Select">Pasirinkti</string>
+  <string name="AppLauncher.Settings.Add.Minimum">Minimumas</string>
+  <string name="AppLauncher.Settings.Add.Normal">Normalus</string>
+  <string name="AppLauncher.Settings.Add.Maximum">Maksimumas</string>
+  <string name="AppLauncher.Settings.Add.NoWindow">Be lango</string>
+  <string name="AppLauncher.Settings.Add.SearchIcon">Paieškos piktograma</string>
+  <string name="AppLauncher.Settings.Add.SearchApp">Ieškoti programos</string>
+  <string name="AppLauncher.Settings.Add.AsAdmin">Leisti administratoriaus vardu</string>
+  <string name="AppLauncher.Settings.Edit">Redaguoti</string>
+  <string name="AppLauncher.Settings.Delete">Trinti</string>
+  <string name="AppLauncher.Settings.Test">Testuoti</string>
+</resources>

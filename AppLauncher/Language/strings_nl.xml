@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="AppLauncher.Title">App Launcher</string>
+  <string name="AppLauncher.Stop">stop</string>
+  <string name="AppLauncher.Pause">Pause</string>
+  <string name="AppLauncher.SwitchPlaying">verander naar afspeelstatus</string>
+  <string name="AppLauncher.Settings.Title">Instellingen</string>
+  <string name="AppLauncher.Settings.Helptext">kies je externe Apps</string>
+  <string name="AppLauncher.Settings.Add">toegevoegd</string>
+  <string name="AppLauncher.Settings.Add.Shortname">korte naam</string>
+  <string name="AppLauncher.Settings.Add.Arguments">argumenten</string>
+  <string name="AppLauncher.Settings.Add.Path">applicatie pad</string>
+  <string name="AppLauncher.Settings.Add.Description">Beschrijving</string>
+  <string name="AppLauncher.Settings.Add.Username">Gebruikersnaam</string>
+  <string name="AppLauncher.Settings.Add.Password">Wachtwoord</string>
+  <string name="AppLauncher.Settings.Add.Icon">Icoon pad</string>
+  <string name="AppLauncher.Settings.Add.Screenmode">scherm mode</string>
+  <string name="AppLauncher.Settings.Add.Search">zoek</string>
+  <string name="AppLauncher.Settings.Add.Select">selecteer</string>
+  <string name="AppLauncher.Settings.Add.Minimum">minimaale</string>
+  <string name="AppLauncher.Settings.Add.Normal">normaal</string>
+  <string name="AppLauncher.Settings.Add.Maximum">maximale</string>
+  <string name="AppLauncher.Settings.Add.NoWindow">geen scherm</string>
+  <string name="AppLauncher.Settings.Add.SearchIcon">zoek icoon</string>
+  <string name="AppLauncher.Settings.Add.SearchApp">zoek applicatie</string>
+  <string name="AppLauncher.Settings.Add.AsAdmin">gebruik als Administrator</string>
+  <string name="AppLauncher.Settings.Edit">Bewerken</string>
+  <string name="AppLauncher.Settings.Delete">Verwijderen</string>
+  <string name="AppLauncher.Settings.Test">Test</string>
+</resources>

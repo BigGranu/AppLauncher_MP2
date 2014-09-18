@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="AppLauncher.Stop">Stop</string>
+  <string name="AppLauncher.Pause">Pauza</string>
+  <string name="AppLauncher.Settings.Title">Nastavenie</string>
+  <string name="AppLauncher.Settings.Add">Pridané</string>
+  <string name="AppLauncher.Settings.Add.Username">Meno</string>
+  <string name="AppLauncher.Settings.Add.Password">Heslo</string>
+  <string name="AppLauncher.Settings.Add.Search">Hľadať</string>
+</resources>

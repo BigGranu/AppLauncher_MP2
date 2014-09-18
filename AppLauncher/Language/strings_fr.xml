@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="AppLauncher.Title">Lanceur d\'applications</string>
+  <string name="AppLauncher.Stop">Stop</string>
+  <string name="AppLauncher.Pause">Pause</string>
+  <string name="AppLauncher.SwitchPlaying">Changer le statut de lecture</string>
+  <string name="AppLauncher.Settings.Title">Réglages</string>
+  <string name="AppLauncher.Settings.Helptext">Sélectionnez votre application externe</string>
+  <string name="AppLauncher.Settings.Add">Ajouté</string>
+  <string name="AppLauncher.Settings.Add.Shortname">Nom en abrégé</string>
+  <string name="AppLauncher.Settings.Add.Arguments">Arguments</string>
+  <string name="AppLauncher.Settings.Add.Path">Chemin de l\'application</string>
+  <string name="AppLauncher.Settings.Add.Description">Description</string>
+  <string name="AppLauncher.Settings.Add.Username">Nom d\'utilisateur</string>
+  <string name="AppLauncher.Settings.Add.Password">Mot de passe</string>
+  <string name="AppLauncher.Settings.Add.Icon">Chemin vers l\'icône</string>
+  <string name="AppLauncher.Settings.Add.Screenmode">Mode de l\'écran</string>
+  <string name="AppLauncher.Settings.Add.Search">Recherche</string>
+  <string name="AppLauncher.Settings.Add.Select">Sélectionnez</string>
+  <string name="AppLauncher.Settings.Add.Minimum">Minimum</string>
+  <string name="AppLauncher.Settings.Add.Normal">Normal</string>
+  <string name="AppLauncher.Settings.Add.Maximum">Maximum</string>
+  <string name="AppLauncher.Settings.Add.NoWindow">Aucune fenêtre</string>
+  <string name="AppLauncher.Settings.Add.SearchIcon">Recherche d\'icône</string>
+  <string name="AppLauncher.Settings.Add.SearchApp">Recherche d\'application</string>
+  <string name="AppLauncher.Settings.Add.AsAdmin">Lancer en tant qu\'administrateur</string>
+  <string name="AppLauncher.Settings.Edit">Éditer</string>
+  <string name="AppLauncher.Settings.Delete">Effacer</string>
+  <string name="AppLauncher.Settings.Test">Test</string>
+</resources>

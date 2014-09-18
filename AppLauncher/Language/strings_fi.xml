@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="AppLauncher.Title">Sovellus Käynnistäjä</string>
+  <string name="AppLauncher.Stop">Pysäytä</string>
+  <string name="AppLauncher.Pause">Tauko</string>
+  <string name="AppLauncher.SwitchPlaying">Muuta toisto statusta</string>
+  <string name="AppLauncher.Settings.Title">Asetukset</string>
+  <string name="AppLauncher.Settings.Helptext">Valitse ulkoiset sovelluksesi</string>
+  <string name="AppLauncher.Settings.Add">Lisätty</string>
+  <string name="AppLauncher.Settings.Add.Shortname">Lyhyt nimi</string>
+  <string name="AppLauncher.Settings.Add.Arguments">Argumentit</string>
+  <string name="AppLauncher.Settings.Add.Path">Sovelluksen polku</string>
+  <string name="AppLauncher.Settings.Add.Description">Kuvaus</string>
+  <string name="AppLauncher.Settings.Add.Username">Käyttäjänimi</string>
+  <string name="AppLauncher.Settings.Add.Password">Salasana</string>
+  <string name="AppLauncher.Settings.Add.Icon">Kuvakkeen polku</string>
+  <string name="AppLauncher.Settings.Add.Screenmode">Näyttö tila</string>
+  <string name="AppLauncher.Settings.Add.Search">Etsi</string>
+  <string name="AppLauncher.Settings.Add.Select">Valitse</string>
+  <string name="AppLauncher.Settings.Add.Minimum">Minimi</string>
+  <string name="AppLauncher.Settings.Add.Normal">Normaali</string>
+  <string name="AppLauncher.Settings.Add.Maximum">Maksimi</string>
+  <string name="AppLauncher.Settings.Add.NoWindow">Ei ikkunaa</string>
+  <string name="AppLauncher.Settings.Add.SearchIcon">Haku kuvake</string>
+  <string name="AppLauncher.Settings.Add.SearchApp">Hae sovellusta</string>
+  <string name="AppLauncher.Settings.Add.AsAdmin">Suorita järjestelmänvalvojana</string>
+  <string name="AppLauncher.Settings.Edit">Muokkaa</string>
+  <string name="AppLauncher.Settings.Delete">Poista</string>
+  <string name="AppLauncher.Settings.Test">Testaa</string>
+</resources>

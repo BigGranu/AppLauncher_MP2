@@ -93,7 +93,6 @@ namespace AppLauncher.Models
 
     public void ExitModelContext(NavigationContext oldContext, NavigationContext newContext)
     {
-      Helper.Help.SaveApps(_apps);
     }
 
     public void ChangeModelContext(NavigationContext oldContext, NavigationContext newContext, bool push)

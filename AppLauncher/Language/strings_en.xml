@@ -27,6 +27,7 @@
   <string name="AppLauncher.Settings.Edit">Edit</string>
 	<string name="AppLauncher.Settings.Delete">Delete</string>
 	<string name="AppLauncher.Settings.Test">Test</string>
+  <string name="AppLauncher.Group">Group</string>
   <string name="AppLauncher.SelectGroup">Select a Group</string>
   <string name="AppLauncher.SelectApp">Select a App</string>
   <string name="AppLauncher.RemoveGroup">Remove Group</string>
